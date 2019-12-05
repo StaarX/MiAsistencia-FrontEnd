@@ -14,22 +14,31 @@ export class InicioAlumnoComponent implements OnInit {
      private alumnoServicio:AlumnoService,
      private router: Router) { }
   public token =localStorage.getItem('ACCESS_TOKEN');
-    public suadero= this.usuarioServicio.mostrarDatosToken(this.token);
-    public nombre= this.suadero.nombre;
-    public id= this.suadero.id;
-    public tipo= this.suadero.tipo;
+  public suadero= this.usuarioServicio.mostrarDatosToken(this.token);
+  public nombre= ''
+  public id= ''
+  public tipo= ''
+    
+    
     
   ngOnInit() {
-    
+    this.getDatos();
+  }
+
+  getDatos():void{
+    if(this.suadero){
+     this.nombre= this.suadero.nombre;
+     this.id=this.suadero.id;
+     this.tipo=this.suadero.tipo;
+    }
   }
 
 
-  // registrarAsistencia(tokenAlumno:String){
-  //   if(this.alumnoServicio.comprobarAsistencia(this.token)){
-  //     this.router.navigateByUrl('/regAsist');
-  //   }
+  comprobarClase(){
+    
+  }
+}
     
     
   
 
-}

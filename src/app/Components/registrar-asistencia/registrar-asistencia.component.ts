@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AlumnoService} from '../../servicios/alumno.service';
+
 
 @Component({
   selector: 'app-registrar-asistencia',
@@ -6,10 +8,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./registrar-asistencia.component.css']
 })
 export class RegistrarAsistenciaComponent implements OnInit {
+  
   public token =localStorage.getItem('ACCESS_TOKEN');
-  constructor() { }
+  
+  constructor(private alumno: AlumnoService) {
+    
+   }
 
   ngOnInit() {
+    this.alumno.comprobarClase(this.token).subscribe(
+      res => {
+        console.log(res)
+      },
+      err => console.error(err)
+    );
+    
   }
+  
+  
+  
 
 }

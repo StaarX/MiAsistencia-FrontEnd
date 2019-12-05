@@ -1,31 +1,42 @@
-<div class="container" >
- <div class="jumbotron mt-3">
-    <div class="row">
-    
-    <div class="col-md-12"  class="mx-auto" style="width: 60px;" >
-        <img src="../../../assets/avatar.png" alt="">
-    </div>
-    
-    <div class="col-md-12">
-            <h1 class="text-center" >Inicio {{tipo}}</h1> 
-        </div>
-        
-        <div class="col-md-12">
-            <h2 class="text-center"> ID: {{id}} </h2>
-        </div>
-            
-        <div class="col-md-12">
-            <h3 class="text-center">Nombre: {{nombre}}</h3>
-        </div>       
-        
-        
-    </div>
- 
-    <div class="div-row" class="mx-auto" style="width: 400px;">
-        <button type="button" class="btn btn-primary btn-lg col-xs-3 col-sm-12 col-md-12 col-lg-12">Gestion de asistencia</button>
-        <button type="button" class="btn btn-primary btn-lg col-xs-3 col-sm-12 col-md-12 col-lg-12">Generar reporte</button>
-        <button type="button" class="btn btn-primary btn-lg col-xs-3 col-sm-12 col-md-12 col-lg-12">Monitorear asistencia</button>
-        <button type="button" class="btn btn-primary btn-lg col-xs-3 col-sm-12 col-md-12 col-lg-12">Atras</button>
-    </div>
+<div class="container">
+    <div class="jumbotron mt-3">
+        <div class="row">
 
+            <div class="col-md-12" class="mx-auto" style="width: 60px;">
+                <img src="../../../assets/avatar.png" alt="">
+            </div>
+
+            <div class="col-md-12">
+                <h1 class="text-center">Inicio {{tipo}}</h1>
+            </div>
+
+            <div class="col-md-12">
+                <h2 class="text-center"> ID: {{id}} </h2>
+            </div>
+
+            <div class="col-md-12">
+                <h3 class="text-center">Nombre: {{nombre}}</h3>
+            </div>
+
+
+        </div>
+
+        <div class="div-row" class="mx-auto" style="width: 400px;">
+            <button type="button" class="btn btn-primary btn-lg col-xs-3 col-sm-12 col-md-12 col-lg-12"
+                routerLink="/Gasistencias">Gestion de asistencia</button>
+            <button type="button" class="btn btn-primary mt-2 btn-lg col-xs-3 col-sm-12 col-md-12 col-lg-12"
+                routerLink="/reportes">Generar reporte</button>
+            <button type="button" class="btn btn-primary mt-2 btn-lg col-xs-3 col-sm-12 col-md-12 col-lg-12">Monitorear asistencia</button>
+            <div class="row" class="mx-auto" style="width: 400px;">
+                <select [(ngModel)]="clase" class="custom-select mr-sm-2 " id="inlineFormCustomSelect"
+                    class="btn btn-light border rounded border-dark btn-lg mt-2 col-xs-3 col-sm-12 col-md-12 col-lg-12">
+                    <option selected>Elija una clase</option>
+                    <option value="1" *ngFor="let clase of clases" [ngValue]="clase" >{{clase.nombre}}</option>
+                </select>
+                <button type="button"class="  btn-success btn-lg col-xs-3 col-sm-12 col-md-12 col-lg-12 mt-1 text-white " (click)="saveClase()">Iniciar</button>
+                <button type="button" class="mt-2 btn btn-secondary btn-lg col-xs-3 col-sm-12 col-md-12 col-lg-12"
+                    routerLink="/login">Atras</button>
+            </div>          
+        </div>
+    </div>
 </div>

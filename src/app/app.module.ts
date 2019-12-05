@@ -16,10 +16,12 @@ import { InicioMaestroComponent } from './Components/inicio-maestro/inicio-maest
 import { InicioAlumnoComponent } from './Components/inicio-alumno/inicio-alumno.component';
 import { RegistrarAsistenciaComponent } from './Components/registrar-asistencia/registrar-asistencia.component';
 import { PaseListaComponent } from './Components/pase-lista/pase-lista.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule,HTTP_INTERCEPTORS} from '@angular/common/http';
 import {UsuarioService} from './servicios/usuario.service'; 
 import {FlashMessagesModule} from 'angular2-flash-messages';
 import {FlashMessagesService} from 'angular2-flash-messages';
+import {TokenInterceptorService} from "./servicios/token-interceptor.service";
+import { MaestroserviceService } from "./servicios/maestroservice.service"  
 
 
 @NgModule({
@@ -47,7 +49,12 @@ import {FlashMessagesService} from 'angular2-flash-messages';
     FlashMessagesModule
   ],
   providers: [
-    UsuarioService,FlashMessagesService
+    UsuarioService,FlashMessagesService,MaestroserviceService,
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi:true
+    }
   ],
   bootstrap: [AppComponent]
 })
