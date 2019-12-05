@@ -16,7 +16,7 @@ export class RegistrarAsistenciaComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.alumno.comprobarClase(this.token).subscribe(
+    this.alumno.comprobarClase().subscribe(
       res => {
         console.log(res)
       },

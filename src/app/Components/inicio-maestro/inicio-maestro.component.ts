@@ -3,6 +3,7 @@ import {Usuario} from '../../models/usuario';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { MaestroserviceService } from '../../servicios/maestroservice.service';
 import {Clase} from "../../models/Clase";
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-inicio-maestro',
   templateUrl: './inicio-maestro.component.html',
@@ -10,21 +11,7 @@ import {Clase} from "../../models/Clase";
 })
 export class InicioMaestroComponent implements OnInit {
 
-
-  clase: Clase = {
-    id: '',
-    nombre: '',
-    horarioinicio: '',
-    horariofin: '',
-    dias:'',
-    maestro:'',
-    alumnosins:''
-  };
-
-  claseID: Clase ={
-    id: ''
-  }
-  constructor(private usuarioServicio:UsuarioService, private maistro:MaestroserviceService) { }
+  constructor(private usuarioServicio:UsuarioService,private router:Router) { }
   public token =localStorage.getItem('ACCESS_TOKEN');
   public suadero= this.usuarioServicio.mostrarDatosToken(this.token);
   public nombre= this.suadero.nombre;
@@ -36,27 +23,13 @@ export class InicioMaestroComponent implements OnInit {
   
 
   ngOnInit() {
-    this.maistro.getClases().subscribe(
-      res => {
-        this.clases = res;
-          console.log(res);
-      }, 
-      err => console.error(err)
-    );
   }
 
-  saveClase(){
-    console.log(this.clase);
-    this.claseID.id=this.clase.id;;
-    console.log(this.claseID);
-    const claseMaestro=this.maistro.iniciarClase(this.claseID).subscribe(
-      res => {
-        console.log(res) 
-        //console.log("Clase Iniciada!")
-      },
-      err => console.error(err)     
-    );
+  irPaseLista(){
+    this.router.navigateByUrl('/paseLista');
   }
+
+
   }
 
 

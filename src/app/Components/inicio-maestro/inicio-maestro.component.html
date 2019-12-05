@@ -28,12 +28,7 @@
                 routerLink="/reportes">Generar reporte</button>
             <button type="button" class="btn btn-primary mt-2 btn-lg col-xs-3 col-sm-12 col-md-12 col-lg-12">Monitorear asistencia</button>
             <div class="row" class="mx-auto" style="width: 400px;">
-                <select [(ngModel)]="clase" class="custom-select mr-sm-2 " id="inlineFormCustomSelect"
-                    class="btn btn-light border rounded border-dark btn-lg mt-2 col-xs-3 col-sm-12 col-md-12 col-lg-12">
-                    <option selected>Elija una clase</option>
-                    <option value="1" *ngFor="let clase of clases" [ngValue]="clase" >{{clase.nombre}}</option>
-                </select>
-                <button type="button"class="  btn-success btn-lg col-xs-3 col-sm-12 col-md-12 col-lg-12 mt-1 text-white " (click)="saveClase()">Iniciar</button>
+                <button type="button"class="  btn-success btn-lg col-xs-3 col-sm-12 col-md-12 col-lg-12 mt-1 text-white " (click)="paseLista()">Pase de Lista</button>
                 <button type="button" class="mt-2 btn btn-secondary btn-lg col-xs-3 col-sm-12 col-md-12 col-lg-12"
                     routerLink="/login">Atras</button>
             </div>          

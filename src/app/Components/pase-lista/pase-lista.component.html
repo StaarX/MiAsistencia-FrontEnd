@@ -10,8 +10,8 @@
                   <div class="row h-100 text-center container mx-auto">
                       <div class="text-center justify-content-center align-self-center mx-auto">
                         
-                            <h1>CODIGO</h1>
-                        
+                            <h1>Clase: {{claseIniciada.clase.nombre}} </h1>
+                            <h2>Código: {{claseIniciada.codigo}} </h2>
                         
                       </div>
                     </div>
@@ -20,12 +20,16 @@
         </div>
     
     <div class="div-row" class="div-t" class="mx-auto" style="width: 400px;">
-        <h3 class=" col-xs-3 col-sm-12 col-md-12 col-lg-12">Aaron Juanes</h3>
-        <h3 class=" col-xs-3 col-sm-12 col-md-12 col-lg-12">julian Juanes</h3>
-        <h3 class=" col-xs-3 col-sm-12 col-md-12 col-lg-12">luis lopez</h3>
-        <h3 class=" col-xs-3 col-sm-12 col-md-12 col-lg-12">luis mungarro</h3>
-        <h3 class=" col-xs-3 col-sm-12 col-md-12 col-lg-12">Junnior hernandez</h3>
-        <h3 class=" col-xs-3 col-sm-12 col-md-12 col-lg-12">un wey más</h3>
+        <select [(ngModel)]="clase" class="custom-select mr-sm-2 " id="inlineFormCustomSelect"
+                    class="btn btn-light border rounded border-dark btn-lg mt-2 col-xs-3 col-sm-12 col-md-12 col-lg-12">
+                    <option selected>Elija una clase</option>
+                    <option value="1" *ngFor="let clase of clases" [ngValue]="clase" >{{clase.nombre}}</option>
+                    
+                </select>
+                <button type="button"class="  btn-success btn-lg col-xs-3 col-sm-12 col-md-12 col-lg-12 mt-1 text-white " (click)="saveClase()">Iniciar</button>
+                <div *ngFor="let asistencia of claseIniciada.alumnos">
+                <h3 class=" col-xs-3 col-sm-12 col-md-12 col-lg-12">{{asistencia.nombre}}</h3>
+                </div>
         <button type="button" class="btn btn-primary btn-lg col-xs-3 col-sm-12 col-md-12 col-lg-12">Añadir alumno</button>
         <button type="button" class="btn btn-primary btn-lg col-xs-3 col-sm-12 col-md-12 col-lg-12" routerLink="/hubMaestro">Atrás</button>
         

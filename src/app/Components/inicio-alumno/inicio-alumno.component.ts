@@ -33,10 +33,6 @@ export class InicioAlumnoComponent implements OnInit {
     }
   }
 
-
-  comprobarClase(){
-    
-  }
 }
     
     

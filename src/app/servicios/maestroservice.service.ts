@@ -11,8 +11,6 @@ import { Clase } from '../models/Clase'
 })
 export class MaestroserviceService {
   API_URI = 'http://localhost:3000';
-  authSubject = new BehaviorSubject(false);
-  private token= localStorage.getItem('ACCESS_TOKEN');
   
 
   constructor(private http: HttpClient) {
@@ -27,6 +25,10 @@ export class MaestroserviceService {
    iniciarClase(id: Clase){
      console.log(id);
      return this.http.post(`${this.API_URI}/maestro/iniciarClase`,id)
+   }
+
+   comprobarClaseIniciada(){
+    return this.http.get(`${this.API_URI}/maestro/comprobarClaseIniciada`)
    }
 
  

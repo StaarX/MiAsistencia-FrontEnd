@@ -15,8 +15,8 @@ export class AlumnoService {
   constructor(private http: HttpClient, private uS:UsuarioService) { }
 
 
-  comprobarClase(token: Object){
-    return this.http.get(`${this.API_URI}/estudiante/comprobarClaseIniciada`,token)     
+  comprobarClase(){
+    return this.http.get(`${this.API_URI}/estudiante/comprobarClaseIniciada`)     
   }
 
 }

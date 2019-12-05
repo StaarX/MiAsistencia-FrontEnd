@@ -13,9 +13,13 @@ export class TokenInterceptorService {
 intercept ( req, next){
   let usuarioService= this.injector.get(UsuarioService);
   //let maestroservice= this.injector.get(MaestroserviceService);
-  let tokenizeRequest= req.clone({
+  let token = usuarioService.getToken();
+  if(token==null){
+    return next.handle(req);
+  }
+    let tokenizeRequest= req.clone({
     setHeaders: {
-      Authorization: usuarioService.getToken()
+      Authorization: token
     }
   })
   
