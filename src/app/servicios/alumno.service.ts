@@ -3,7 +3,8 @@ import {HttpClient} from '@angular/common/http';
 import {tap} from 'rxjs/operators';
 import {Observable, BehaviorSubject} from 'rxjs';
 import { UsuarioService } from '../servicios/usuario.service';
-import { Token } from '@angular/compiler/src/ml_parser/lexer';
+import { Codigo } from '../models/Codigo';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,9 +15,17 @@ export class AlumnoService {
 
   constructor(private http: HttpClient, private uS:UsuarioService) { }
 
-
   comprobarClase(){
     return this.http.get(`${this.API_URI}/estudiante/comprobarClaseIniciada`)     
   }
+
+  registrarClase(codigo:Codigo):Observable<string>{
+    return this.http.post(`${this.API_URI}/estudiante/registrarAsistencia`,codigo).pipe(tap(
+      (res: string)=>{
+        console.log(res);
+      })
+      );
+
+}
 
 }

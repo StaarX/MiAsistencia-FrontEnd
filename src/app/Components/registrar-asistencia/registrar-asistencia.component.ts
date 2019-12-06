@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {AlumnoService} from '../../servicios/alumno.service';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
+import { Codigo } from 'src/app/models/Codigo';
+import { Clase } from 'src/app/models/Clase';
+import { ClaseIniciada } from 'src/app/models/ClaseIniciada';
 
 
 @Component({
@@ -12,7 +15,7 @@ export class RegistrarAsistenciaComponent implements OnInit {
   
   public token =localStorage.getItem('ACCESS_TOKEN');
   
-  constructor(private alumno: AlumnoService, private usuarioServicio:UsuarioService) {
+  constructor(private alumno: AlumnoService, private usuarioServicio:UsuarioService ) {
     
    }
    public suadero= this.usuarioServicio.mostrarDatosToken(this.token);
@@ -20,7 +23,11 @@ export class RegistrarAsistenciaComponent implements OnInit {
   public id= ''
   public tipo= ''
 
-   claseIniciada:Object={
+
+  claseI:Clase ={
+    id:''
+  }
+  claseIniciada:ClaseIniciada={
     estado:'',
     res: '',
     clase:{
@@ -28,10 +35,16 @@ export class RegistrarAsistenciaComponent implements OnInit {
       fecha:'',
       nombre: '',
       codigo:'',
-      estado:''
-    }
+      estado:'',
+      idmaestro:'',
+      id:''
   }
-  
+}
+  codigoAsist:Codigo ={
+    clase:'',
+    codigo:''
+    
+  }
 
   getDatos():void{
     if(this.suadero){
@@ -45,6 +58,7 @@ export class RegistrarAsistenciaComponent implements OnInit {
     this.alumno.comprobarClase().subscribe(
       res => {
         this.claseIniciada=res;
+        
         console.log(this.claseIniciada)
       },
       err => console.error(err)
@@ -53,7 +67,23 @@ export class RegistrarAsistenciaComponent implements OnInit {
     this.getDatos();
     
   }
+
   
+
+  registrarAsistencia(form){
+    console.log(form.value);
+    const codigoFront = form.value;
+    this.codigoAsist.codigo=codigoFront.codigo;
+    this.codigoAsist.clase=this.claseIniciada.clase.id;
+    console.log(this.codigoAsist);
+    
+    this.alumno.registrarClase(this.codigoAsist).subscribe(
+      res => {
+        console.log(res);
+      },
+      err => console.error(err)
+    );
+  }
   
   
 

@@ -39,9 +39,11 @@
             <th scope="row">Clase en curso</th>
             <td>{{claseIniciada.clase.nombre}}</td>
             <td>
-                <input type="code" class="form-control" id="e3j3" aria-describedby="emailHelp" placeholder="Ingrese codigo de clase">
-            </td>
-            <td><button type="button" class="btn btn-primary btn-lg">iniciar</button></td>
+              <form #frmRegistroAsist="ngForm" (ngSubmit)="registrarAsistencia(frmRegistroAsist)">
+                  <input type="text" class="form-control" id="codigo" name="codigo" aria-describedby="codigoAyuda" placeholder="Ingrese codigo de clase" ngModel required>
+                  <button type="submit" class="btn btn-primary btn-lg">iniciar</button>
+                </form>
+                </td>
           </tr>
           </table>
         <div class="mx-auto" style="width: 200px;">
