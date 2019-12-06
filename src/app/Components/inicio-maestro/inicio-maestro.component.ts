@@ -25,7 +25,7 @@ export class InicioMaestroComponent implements OnInit {
   ngOnInit() {
   }
 
-  irPaseLista(){
+  paseLista(){
     this.router.navigateByUrl('/paseLista');
   }
 
