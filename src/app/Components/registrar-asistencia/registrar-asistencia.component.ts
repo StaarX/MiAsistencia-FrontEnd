@@ -4,6 +4,7 @@ import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { Codigo } from 'src/app/models/Codigo';
 import { Clase } from 'src/app/models/Clase';
 import { ClaseIniciada } from 'src/app/models/ClaseIniciada';
+import { FlashMessagesModule, FlashMessagesService } from 'angular2-flash-messages';
 
 
 @Component({
@@ -15,7 +16,9 @@ export class RegistrarAsistenciaComponent implements OnInit {
   
   public token =localStorage.getItem('ACCESS_TOKEN');
   
-  constructor(private alumno: AlumnoService, private usuarioServicio:UsuarioService ) {
+  constructor(private alumno: AlumnoService, 
+              private usuarioServicio:UsuarioService, 
+              public flashMessage: FlashMessagesService ) {
     
    }
    public suadero= this.usuarioServicio.mostrarDatosToken(this.token);
@@ -42,6 +45,7 @@ export class RegistrarAsistenciaComponent implements OnInit {
 }
   codigoAsist:Codigo ={
     clase:'',
+    maestro:'',
     codigo:''
     
   }
@@ -74,14 +78,19 @@ export class RegistrarAsistenciaComponent implements OnInit {
     console.log(form.value);
     const codigoFront = form.value;
     this.codigoAsist.codigo=codigoFront.codigo;
+    this.codigoAsist.maestro=this.claseIniciada.clase.idmaestro;
     this.codigoAsist.clase=this.claseIniciada.clase.id;
+    
     console.log(this.codigoAsist);
     
     this.alumno.registrarClase(this.codigoAsist).subscribe(
       res => {
         console.log(res);
+        this.flashMessage.show('HAS REGISTRADO ASISTENCIA '+this.suadero.nombre, { cssClass: 'alert-success', timeout: 4000 });
       },
-      err => console.error(err)
+      
+      err => this.flashMessage.show('Ya has marcado asistencia a esta clase '+ err, { cssClass: 'alert-warning', timeout: 4000 })
+      
     );
   }
   

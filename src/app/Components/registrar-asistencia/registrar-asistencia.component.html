@@ -41,11 +41,15 @@
             <td>
               <form #frmRegistroAsist="ngForm" (ngSubmit)="registrarAsistencia(frmRegistroAsist)">
                   <input type="text" class="form-control" id="codigo" name="codigo" aria-describedby="codigoAyuda" placeholder="Ingrese codigo de clase" ngModel required>
+                  
                   <button type="submit" class="btn btn-primary btn-lg">iniciar</button>
+                
                 </form>
                 </td>
+              
           </tr>
           </table>
+        
         <div class="mx-auto" style="width: 200px;">
             <button type="button" class="btn btn-primary btn-lg" routerLink="/hubAlumno">Atras</button>
         </div>

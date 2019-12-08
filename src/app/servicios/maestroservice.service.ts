@@ -27,9 +27,22 @@ export class MaestroserviceService {
      return this.http.post(`${this.API_URI}/maestro/iniciarClase`,id)
    }
 
+   finalizarClase(id: Clase){
+    console.log(id);
+    return this.http.post(`${this.API_URI}/maestro/finalizarClase`,id)
+  }
+
    comprobarClaseIniciada(){
     return this.http.get(`${this.API_URI}/maestro/comprobarClaseIniciada`)
    }
+
+   darAsistencia(id: Clase){
+     return this.http.post(`${this.API_URI}/maestro/registrarAsistencia`,id);
+   }
+
+   quitarAsistencia(id: Clase){
+    return this.http.post(`${this.API_URI}/maestro/eliminarAsistencia`,id);
+   } 
 
  
 }

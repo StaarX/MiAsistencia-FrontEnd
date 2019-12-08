@@ -1,40 +1,69 @@
 <div class="container">
-    
-    <div class="col-md-12">
-        <h1 class="text-center">Pase de lista</h1> 
-    </div> 
-        <div class="col-md-12 mx-auto">
+        <div class="row">
+                <div class="col-10">
+                        <h1 class="text-center">Pase de lista</h1> 
+                            
+                                
+                        
+                                    <header class="imagenCodigo text-center mx-auto" >
+                                        <div class="background-overlay text-white py-5 ">
+                                          <div class="row h-100 text-center container mx-auto">
+                                              <div class="text-center justify-content-center align-self-center mx-auto">
+                                                
+                                                    <h1>Clase: {{claseA.clase.nombre}} </h1>
+                                                    <h2>Código: {{claseA.codigo}} </h2>
+                                                
+                                              </div>
+                                            </div>
+                                          </div>
+                                      </header>
 
-            <header class="imagenCodigo text-center mx-auto" >
-                <div class="background-overlay text-white py-5 ">
-                  <div class="row h-100 text-center container mx-auto">
-                      <div class="text-center justify-content-center align-self-center mx-auto">
-                        
-                            <h1>Clase: {{claseIniciada.clase.nombre}} </h1>
-                            <h2>Código: {{claseIniciada.codigo}} </h2>
-                        
-                      </div>
-                    </div>
-                  </div>
-              </header>
-        </div>
-    
-    <div class="div-row" class="div-t" class="mx-auto" style="width: 400px;">
-        <select [(ngModel)]="clase" class="custom-select mr-sm-2 " id="inlineFormCustomSelect"
-                    class="btn btn-light border rounded border-dark btn-lg mt-2 col-xs-3 col-sm-12 col-md-12 col-lg-12">
-                    <option selected>Elija una clase</option>
-                    <option value="1" *ngFor="let clase of clases" [ngValue]="clase" >{{clase.nombre}}</option>
-                    
-                </select>
-                <button type="button"class="  btn-success btn-lg col-xs-3 col-sm-12 col-md-12 col-lg-12 mt-1 text-white " (click)="saveClase()">Iniciar</button>
-                <div *ngFor="let asistencia of claseIniciada.alumnos">
-                <h3 class=" col-xs-3 col-sm-12 col-md-12 col-lg-12">{{asistencia.nombre}}</h3>
+                        <div class="div-row  " class="div-t" class="mx-auto py-4 col-xs-4 col-sm-7  col-md-7 col-lg-7 mt-6" >
+                                <table class="table  "  >
+                                        <thead class="thead-dark">
+                                          <tr class="text-center ">
+                                            <th scope="col" class="align-self-center">Alumno</th>
+                                            <th scope="col"></th>
+                                            <th scope="col"></th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr class="text-center " *ngFor="let asistencia of claseA.alumnos" >
+                                            <th class="align-self-center" scope="row" >{{asistencia.nombre}} </th>
+                                            <td class="mx-auto">
+                                                <button class="btn mat-mini-fab"><img src="../../assets/checked_paseLista.png" alt="" (click)="darAsistencia(asistencia)"></button>
+                                            </td>
+                                            <td>
+                                                <button class="btn mat-mini-fab"><img src="../../assets/cancel_paseLista.png" alt="" (click)="quitarAsistencia(asistencia)"></button>
+                                            </td>
+                                          </tr>
+                
+                                        </tbody>
+                                </table>
+                                <button type="button" class="btn btn-primary btn-lg col-xs-3 col-sm-12 col-md-12 col-lg-12" routerLink="/hubMaestro">Atrás</button>
+                            </div>
+
                 </div>
-        <button type="button" class="btn btn-primary btn-lg col-xs-3 col-sm-12 col-md-12 col-lg-12">Añadir alumno</button>
-        <button type="button" class="btn btn-primary btn-lg col-xs-3 col-sm-12 col-md-12 col-lg-12" routerLink="/hubMaestro">Atrás</button>
-        
-        
-    </div>
- 
- 
-</div>
+
+            
+
+
+                <div class="col-2"  >
+                            
+                                    <div class="div-row" class="div-t" class="mx-auto mr-sm-5 " style="height: 200px; width: 300px;">
+                                         <select [(ngModel)]="clase" class="custom-select mr-sm-5 " id="inlineFormCustomSelect"
+                                            class="btn btn-light border rounded border-dark btn-lg col-xs-1 col-sm-1 col-md-12 col-lg-12 mt-5 mr-sm-5">
+                                            <option selected>Elija una clase</option>
+                                            <option value="1" *ngFor="let clase of clases" [ngValue]="clase" >{{clase.nombre}}</option>
+                                            
+                                        </select>
+                        
+                                    
+                                        <button type="button"class="   btn-success btn-lg col-xs-1 col-sm-2 col-md-12 col-lg-12 mt-3 text-white " (click)="saveClase()">Iniciar</button>
+                                        <button type="button"class="   btn-danger btn-lg col-xs-1 col-sm-2 col-md-12 col-lg-12 mt-2 text-white " (click)="finalizarClase()">Finalizar</button>
+                                    </div>
+
+
+                </div>
+            </div>  
+          </div>

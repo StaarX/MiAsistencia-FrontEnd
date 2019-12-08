@@ -1,4 +1,5 @@
 export interface Codigo{
-    codigo:string;
     clase:string;
+    maestro:string; 
+    codigo:string;
 }
